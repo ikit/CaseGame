@@ -1,3 +1,6 @@
+Objectif et mode d'emploi
+#########################
+
 But et possibilités du programme 
 ================================
 
@@ -22,28 +25,34 @@ Le jeu est maintenant construit et prêt à être utilisé. Tapez ensuite ::
 
 Le jeu est lancé, vous pouvez jouer.
 
-Les menus du jeu sont relativement intuitifs (du moins je l'espère). Ainsi le menu principal propose 3 choix :
-   1) Jouer [aléatoire]
-   2) Jouer [personnaliser]
-   3) Quitter
-votre sélection : _
+Les menus du jeu sont relativement intuitifs (du moins je l'espère). Ainsi le menu principal propose 3 choix ::
+
+       1) Jouer [aléatoire]
+       2) Jouer [personnaliser]
+       3) Quitter
+    votre sélection : _
 
 En choisissant 1) Jouer [aléatoire] 
+-----------------------------------
 La partie se configure toute seule, tout peut alors arriver.
 Vous pouvez vous retrouver avec un damier 3x3 évident à résoudre et sans adversaire, ou au contraire un damier 30x30 totalement aléatoire contre la plus performante des intelligence artificielle.
 
 En choisissant 2) Jouer [personnaliser] 
+---------------------------------------
 C'est vous qui configurez entièrement la partie, vous devez alors dans l'ordre définir :
-La taille du damier comprise en 3 et 30 (des sécurités et des rappels vous empêcheront de vous tromper)
-Configurer le damier de départ. Pour cela vous avez le choix entre 4 possibilités. Soit le laisser vide, soit le remplir complètement, soit le remplir aléatoirement, soit, enfin, configurer les cases comme bon vous semble.
-Configurer le damier d'arrivée, de la même manière que pour l'étape 2.
-Choisir votre adversaire. Là encore il y a quatre choix. Bébéto, qui est l'adversaire le plus facile à battre, Speedy qui correspond à un niveau trés bon., Yoda qui dans 95% des cas est imbattable, ou alors aucun adversaire.
+
+ 1 La taille du damier comprise en 3 et 30 (des sécurités et des rappels vous empêcheront de vous tromper)
+ 2 Configurer le damier de départ. Pour cela vous avez le choix entre 4 possibilités. Soit le laisser vide, soit le remplir complètement, soit le remplir aléatoirement, soit, enfin, configurer les cases comme bon vous semble.
+ 3 Configurer le damier d'arrivée, de la même manière que pour l'étape 2.
+ 4 Choisir votre adversaire. Là encore il y a quatre choix. Bébéto, qui est l'adversaire le plus facile à battre, Speedy qui correspond à un niveau trés bon., Yoda qui dans 95% des cas est imbattable, ou alors aucun adversaire.
 
 La partie peut commencer 
+------------------------
 Pour modifier le damier en utilisantla transformation liée à une case, vous devez rentrer les coordonnées de la case : son uméro de ligne et de colonne. Si vous entrz un numéro de ligne erroné, vous obtiendrez un sous menu qui vous proposera 4 choix :
-De l'aide sur la façon de résoudre le damier
-De quitter le menu ou vous trouvez
-De réafficher le damier solution à obtenir
-De quitter la partie. Ceci est considéré comme un abandon et vous vous retrouvez dans le menu "Partie perdue"
+
+ 1 De l'aide sur la façon de résoudre le damier
+ 2 De quitter le menu ou vous trouvez
+ 3 De réafficher le damier solution à obtenir
+ 4 De quitter la partie. Ceci est considéré comme un abandon et vous vous retrouvez dans le menu "Partie perdue"
 
 Si vous obtenez le damier solution (avant que l'adversaire ne le fasse si il y en a un), vous serez redirigé vers le menu "Partie gagnée". De ces deux menus, vous pourrez soit revenir au menu principal, soit demander à l'ordinateur de vous montrer le chemin le plus court pour terminer la partie.
