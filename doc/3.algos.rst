@@ -1,0 +1,69 @@
+Math et algos
+#############
+
+Extrapolation de la méthode manuelle à l'informatique
+=====================================================
+
+Donc comme nous l'avions remarqué dans la partie II, il existe un moyen de résoudre n'importe quel damier 3x3 de 2 couleurs. Pour cela, il suffit d'appliquer les séquences aux cases qu'il faut modifier pour passer du damier de départ au damier final.
+Afin de nous en assurer, nous allons prendre un exemple. Nous avons 2 damiers : un de départ, et un d'arrivé. La figure 3 montre la configuration de ces derniers.
+
+.. image:: https://raw.githubusercontent.com/REGOVAR/Pirus/master/docs/diagrams/fig03.png
+
+On voit donc qu'il faut modifier les cases : 1, 6, 7 et 8. Ce qui fait 4 séquences à appliquer : S1, S6, S7 et S8
+    S1 = { T2, T4, T9, T5 }
+    S6 = { T1, T2, T6, T7, T8 }
+    S7 = { T4, T8, T3, T5 }
+    S8 = { T4, T6, T8, T1, T3 }
+
+Ce qui donne quand on unit toutes ces séquences en une seule :
+Solution = { (T2, T4, T9, T5) , (T1, T2, T6, T7, T8) , (T4, T8, T3, T5) , (T4, T6, T8, T1, T3) }
+
+Les transformation étant commutative, on peut se permettre de les classer.
+Solution = { T1, T1, T2, T2, T3, T3, T4, T4, T5, T5, T6, T6, T7, T8, T8, T8, T9 }
+
+Cette solution marche. Mais elle n'est pas optimisée. Les transformations étant involutives, on supprime les doublons, et on obtiens enfin le chemin le plus court pour aller du damier de dépar au damier d'arrivé.
+Solution = { T4, T7, T8, T9 }
+La figure 4 teste cette solution.
+
+.. image:: https://raw.githubusercontent.com/REGOVAR/Pirus/master/docs/diagrams/fig04.png
+
+Tout le problème tient maintenant à une seule chose : Comment trouver les séquences ?
+On remarque qu'à partir d'un damier vierge, on peut engendrer 29 damiers différents. Il faudrait déjà être sûre que les 9 transformations de bases permettent bien d'obtenir ces 29 damiers à partir d'un damier vierge. C'est là qu'intervient l'outil matriciel - qui de plus est facilement implémentable sur un ordinateur. En effet, on peut représenter une transformation comme un vecteur ayant autant de coefficients qu'il y a de cases dans le damier. Les coefficiants prenant la valeur de 1 si la case correspondante du damier est modifiée par la transformation ou 0 sinon. Voici les vecteurs que l'on obtient pour la version minimale du jeu.
+.. image:: https://raw.githubusercontent.com/REGOVAR/Pirus/master/docs/diagrams/fig05.png
+
+
+Et pour vérifier que ces vecteurs forment une famille libre, on résoud la combinaison linéaire : a1·V1 + ... + a9·V9 = 0 (vecteur nul)
+Ce qui revient à résoudre un système de neuf équations à neuf inconnues. Nous allons bien entendus utiliser la méthode matricielle pour résoudre ceci. On obtient donc la matrice suivante :
+Image:L1_figure6.png
+
+Une fois le système résolu, on est heureux de voir qu'effectivement les transformations de bases sont bien libres et donc que leur compositions peuvent engendrer tous les damiers possibles de taille 3x3. Mais ce n'est pas tout.... sinon nous n'aurions pas pris la pein de vous parler de ça. En effet, c'est à cette l'étape là du raisonement que l'intuition humaine fait des miracles.
+Que se passe-t-il si on essaye résoudre le système suivant :
+Image:L1_figure7.png
+
+On obtient alors le résultat suivant :
+a1 = a3 = a6 = a7 = a8 = 0
+a2 = a4 = a5 = a9 = 1
+L'analogie avec la séquence S1 de la case n°1 se fait immédiatement. Il faut donc lire le résultat ainsi : "pour passer d'un damier à un autre en ne changeant que la case n°1, avec la base de neuf transformations que l'on a (ce sont les vecteurs V1 à V9), il faut appliquer les transformations indiqué par les coefficients non nul du résultat de la combinaison linéaire, c'est-à-dire ici : T2 (a2), T4, T5 et T9".
+
+Résumé de l'algorithme 
+
+Nous allons maintenant récapituler ce qu'il faut faire pour résoudre le jeu des pions dans n'importe quel cas pour un damier 3x3 / 2 couleurs.
+
+Etape 1 : 
+Pour commencer il faut créer la matrice base : matbase. Cette matrice a une taille dans notre cas de 9x9. Pour un damier de taille MxN, elle ferait : (MxN) x (MxN) Elle est construite à partir des MxN vecteurs colonnes correspondants aux MxN transformations nécessaires pour obtenir tout les damiers possibles.
+Etape 2 : 
+Ensuite on crée le vecteur colonne partie, représentant les cases qu'il faut modifier pour passer du damier départ au damier arrivée. Reprenons l'exemple du début :
+FIG 8 - Damiers de départ et d'arrivé
+FIG 8 - Damiers de départ et d'arrivé
+
+Le vecteur partie vaut donc : partie = [ 1 0 0 0 0 1 1 1 0 ]
+Les coefficients à 1 indique que la case en question est à inverser. Ici, il faut inverser les cases n°1, 6, 7, et 8.
+
+Etape 3 : 
+Il suffit maintenant de résoudre le système linéaire matbase ·partie. On obtiendra alors un vecteur solution. Et dans ce cas, solution sera égale à : 
+solution = [ 0 0 0 1 0 0 1 1 1 ]
+Conclusion : 
+Cet algorithme est applicable à touts les damiers possibles, de dimmensions quelconques, avec des transformations elles aussi quelconques.
+C'est au programmeur et aux joueurs de s'assurer que les transformations de base proposées forment bien une base générant tout les damiers possibles. Il suffit ensuite de remplir convenablement la matrice matbase qui sera carrée et dont le côté sera égal au nombre de cases du damier.
+
+A noter aussi que pour résoudre un système d'équations avec autant d'inconnues que d'équations, il suffit de calculer l'inverse de la matrice matbase et de multiplier la matrice ainsi obtenue par le vecteur partie. On obtient alors directement le vecteur solution. C'est cette méthode que nous utiliserons dans notre programme.

@@ -1,0 +1,2 @@
+Ce projet à été réalisé pendant le premier semestre (novembre - janvier) de ma deuxième année de licence informatique (2004-2005), dans le cadre de l'option "Initiation à la programmation objet" enseignée par Mr Bretto. Comme l'indique le titre de l'unitée d'enseignement, les techniques (de programmation) utilisées pour ce projet sont rudimentaire. Mais bien que mon code C++ soit loin d'être merveilleux, l'intelligence artificielle que j'y ai développée mérite quelques petites expliquations.
+
