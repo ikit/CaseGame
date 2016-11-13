@@ -3,20 +3,20 @@ Elaboration du projet
 
 Approche globale du jeu - version minimale 
 ==========================================
-
 Nous avons donc un damier. Pour le moment on va se concentrer sur un damier 3x3, on généralisera aprés sur un damier NxN. Les cases de ce damier sont numérotées de 1 à 9 comme indiqué sur la première grille de la figure 1. A chaque case on associe une transformation (à la case n°1 est associée la transformation T1), qui modifie la configuration du damier. Le sujet du projet imposait à la version minimale du jeu 3 types de transformations:
- 1 Changer les 4 cases d'un même coin. Exemple sur le deuxième damier de la figure 1 où l'on voit en gris en clair les 4 cases modifiées par la transformation T1 associé à la case 1 (coin supérieur gauche). Ce type de transformation est associé aux 4 cases des coins du damier : les cases n°1, n°3, n°7 et n°9.
- 2 Changer les 3 cases d'un même côté. Sur le troisième damier de la figure 1 est représenté la transformation lié à la case 6, qui inverse les 3 cases du côté droit du damier. Ce type de transformation est associé aux 4 cases : n°2, n°4, n°6 et n°8.
- 3 Et enfin, inverser toutes les cases du damier. Cette transformation est associée à la case située au milieu du damier, ici la n°5.
+
+1. Changer les 4 cases d'un même coin. Exemple sur le deuxième damier de la figure 1 où l'on voit en gris en clair les 4 cases modifiées par la transformation T1 associé à la case 1 (coin supérieur gauche). Ce type de transformation est associé aux 4 cases des coins du damier : les cases n°1, n°3, n°7 et n°9.
+2. Changer les 3 cases d'un même côté. Sur le troisième damier de la figure 1 est représenté la transformation lié à la case 6, qui inverse les 3 cases du côté droit du damier. Ce type de transformation est associé aux 4 cases : n°2, n°4, n°6 et n°8.
+3. Et enfin, inverser toutes les cases du damier. Cette transformation est associée à la case située au milieu du damier, ici la n°5.
 
 .. image:: https://raw.githubusercontent.com/ikit/casegame/master/doc/img/fig01.png
 
 Quelques remarques :
-Il y a 29 possibilités de damiers, pour 2 couleurs et 9 cases.
-La compositions des transformations est commutative. C'est à dire que Ti o Tj = Tj o Ti
-Les transformations successives peuvent donc êtres mises dans n'importe quel ordre.
-Les transformations sont involutives : Ti o Ti = Id.
-A l'aide de ces neufs transformations de base, on peut engendrer 29 damiers différents, soit l'ensemble des possibilités. (Ceci est dû au fait qu'on modifier une par une les cases du damier, comme nous allons le voir tout de suite (partie II) )
+* Il y a 29 possibilités de damiers, pour 2 couleurs et 9 cases.
+* La compositions des transformations est commutative. C'est à dire que Ti o Tj = Tj o Ti
+* Les transformations successives peuvent donc êtres mises dans n'importe quel ordre.
+* Les transformations sont involutives : Ti o Ti = Id.
+* A l'aide de ces neufs transformations de base, on peut engendrer 29 damiers différents, soit l'ensemble des possibilités. (Ceci est dû au fait qu'on modifier une par une les cases du damier, comme nous allons le voir tout de suite (partie II) )
 
 Embryon d'intelligence artificielle 
 ===================================
@@ -39,21 +39,18 @@ Liste des modules ajoutés au programme
 .. image:: https://raw.githubusercontent.com/ikit/casegame/master/doc/img/fig02.png
 
 **Un damier de taille quelconque**
-
     Ceci dans le but d'allonger la durée de vie du jeu. En effet, une fois qu'on a le truc pour résoudre les damiers 3x3, 2 couleurs, on s'en lasse vite. Bien qu'en théorie il n'y a aucune limite concernant la taille des damiers, nous allons quand même nous limiter à une taille maximale de 30 cases, sinon des bugs graphiques apparaissent, et au delà de cette taille, il devient insurmontable pour humain de résoudre le damier (déjà rien qu'avec un damier 6x6 on prend pas mal de temps).
-    
+
     Pour jouer avec un damier quelconque, il faut cependant redéfinir les transformations, car celles imposées par le sujet du devoir ne sont plus suffisantes. Nous allons définir un type de transformation qui est le même pour toutes les cases. Ceci ayant l'avantage d'être adapté à toutes les tailles de damiers imaginable. Ainsi, la transformation liée à une case modifiera toutes les cases disposées sur la même ligne et sur la même colonne.
 
     Malheureusement, ce type de transformation ne permet pas de résoudre tout les cas. Pour des damier carré de côté impair (par exemple un damier 5x5), il se peux qu'il n'y ai aucune solution valable. Notre programme ne gérera donc que les damier de taille paire, comprise entre 4 et 30.
 
 **Jouer contre l'ordinateur**
-
     L'intelligence artificielle se basera sur la méthode de résolution décrite plus haut. La 3ème partie de rapport explique en détail l'algorithme utilisé. Cependant cet algorithme permet de trouver une suite de transformation pour aller d'un damier à un autre. Ce qui laisse suposer que notre IA connaîtra dés le début la solution du problème. Ceci ne pose pas de problème. En effet le joueur ne verra pas l'IA jouer, La difficulté viens donc du nombre de coup maximal laisser au joueur humain pour gagner.
-   
+
     Pour calculer le nombre maximum de l'IA, il suffira d'ajouter au nombre de coup minimum pour gagner (obtenu grâce à l'algorithme) un nombre pair tiré aléatoirement en fonction du niveau de l'IA (plus l'IA est faible, plus ce nombre sera élevé). Ce nombre doit être paire, car nous avons vu plus haut que les transformations sont involutive, donc en admettant que pour gagner il faille faire n transformations, si ont en rajoute 1, nous n'obtenons plus la solution. Pour la réobtenir, il faut refaire cette transformation. Donc l'ajout de transformations inutiles va forcement de deux en deux.
 
 **Soigner l'interface**
-
     Nous nous contenterons simplement de mettre des couleurs afin d'egayer un peu l'interface, ainsi que de faire un beau titre pour le jeu.
 
 Liste des modules abandonnées 
