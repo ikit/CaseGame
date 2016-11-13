@@ -11,12 +11,12 @@ Nous avons donc un damier. Pour le moment on va se concentrer sur un damier 3x3,
 
 .. image:: https://raw.githubusercontent.com/ikit/casegame/master/doc/img/fig01.png
 
-Quelques remarques :
-* Il y a 29 possibilités de damiers, pour 2 couleurs et 9 cases.
-* La compositions des transformations est commutative. C'est à dire que Ti o Tj = Tj o Ti
-* Les transformations successives peuvent donc êtres mises dans n'importe quel ordre.
-* Les transformations sont involutives : Ti o Ti = Id.
-* A l'aide de ces neufs transformations de base, on peut engendrer 29 damiers différents, soit l'ensemble des possibilités. (Ceci est dû au fait qu'on modifier une par une les cases du damier, comme nous allons le voir tout de suite (partie II) )
+**Quelques remarques :**
+1. Il y a 29 possibilités de damiers, pour 2 couleurs et 9 cases.
+2. La compositions des transformations est commutative. C'est à dire que Ti o Tj = Tj o Ti
+3. Les transformations successives peuvent donc êtres mises dans n'importe quel ordre.
+4. Les transformations sont involutives : Ti o Ti = Id.
+5. A l'aide de ces neufs transformations de base, on peut engendrer 29 damiers différents, soit l'ensemble des possibilités. (Ceci est dû au fait qu'on modifier une par une les cases du damier, comme nous allons le voir tout de suite (partie II) )
 
 Embryon d'intelligence artificielle 
 ===================================
