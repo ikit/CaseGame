@@ -19,6 +19,7 @@ Sous linux : ouvrez la console et allez dans le rpertoire où vous avez mis le p
 
 Tapez la commande suivante ::
 
+    $ sudo apt install build-essential gpp
     $ g++ *.cc -o jeu
 
 Le jeu est maintenant construit et prêt à être utilisé. Tapez ensuite ::
